@@ -18,29 +18,17 @@ const App: React.FC = () => {
   return (
     <div>
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Inicio (Público)</Link>
-          </li>
-          {isAuthenticated && (
-            <li>
-              <Link to="/dashboard">Panel de Control</Link>
-            </li>
-          )}
-          {isAuthenticated && (
-            <li>
-              <button onClick={handleLogout}>Cerrar Sesión</button>
-            </li>
-          )}
-        </ul>
+        {isAuthenticated && (
+          <button onClick={handleLogout}>Cerrar Sesión</button>
+        )}
       </nav>
 
       <Routes>
-        <Route path="/" element={<div>Página de Inicio Pública</div>} />
-        <Route
+        <Route path="/" element={<Login onLogin={handleLoginSuccess} />} />
+        {/* <Route
           path="/login"
           element={<Login onLogin={handleLoginSuccess} />}
-        />
+        /> */}
         <Route
           path="*"
           element={<h1>ERROR 404, PAGE NOT FOUND</h1>}
